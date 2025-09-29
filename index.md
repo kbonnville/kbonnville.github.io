@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-# Kelly Binnville-Sexton
+# Kelly Bonnville-Sexton
 
 ![Photo of Kelly Bonnville-Sexton](images/AK.jpg){: style="max-width:200px; border-radius:50%; display:block; margin:1rem auto;"}
 
