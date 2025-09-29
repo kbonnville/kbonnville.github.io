@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume — Kelly Bonnville-Sexton</title>
+  <meta name="description" content="Resume of Kelly Bonnville-Sexton" />
+
+  <style>
+    :root{
+      --bg: #f7faf9;
+      --text: #24323a;
+      --muted: #5a707b;
+      --card: #ffffff;
+      --brand-1: #8fbc8f; /* darkseagreen */
+      --brand-2: #5f9ea0; /* cadetblue */
+      --brand-3: #0f6d6d;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --maxw: 900px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,"Noto Sans";
+      line-height:1.6;
+    }
+    a{color:var(--brand-3); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    header{
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color:#073a3a; padding: 2rem 1rem;
+    }
+    .container{max-width: var(--maxw); margin: 0 auto; padding: 0 1rem;}
+    .head{
+      display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    h1{margin:.2rem 0 .25rem 0; font-size: clamp(1.6rem, 1.2rem + 2vw, 2.2rem)}
+    .sub{color:#0a4646; margin:0 0 .5rem 0; font-weight:600}
+    .cta{
+      display:flex; gap:.6rem; flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-block; background:#0b5c5c; color:white; padding:.6rem .9rem;
+      border-radius:999px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.05);
+    }
+    .btn.secondary{background:white; color:#0b5c5c; border-color: rgba(11,92,92,0.2)}
+
+    main{padding: 1.25rem 0 2rem}
+    .panel{
+      background:var(--card); border-radius: var(--radius); box-shadow:var(--shadow);
+      padding:1.25rem; margin: 0 auto 1rem; width:min(100%, var(--maxw));
+    }
+    h2{margin:.2rem 0 0.6rem 0; font-size:1.25rem}
+    h3{margin:.2rem 0 .2rem 0; font-size:1.05rem}
+    .meta{color:var(--muted); font-size:.95rem; margin-bottom:.25rem}
+    .list-tight{margin:.2rem 0 .6rem 0; padding-left:1.1rem}
+    .pill{display:inline-block; background:#eef6f3; border:1px solid #d7ebe6; color:#0f6d6d; border-radius:999px; padding:.22rem .5rem; font-size:.85rem; margin:.2rem .25rem 0 0}
+
+    footer{padding:1.5rem 1rem; text-align:center; color:var(--muted)}
+
+    /* Print-friendly */
+    @media print{
+      header, footer, .btn { display:none !important; }
+      body{ background:white; color:#000; }
+      .panel{ box-shadow:none; border: none; padding: 0; }
+      a{ color:#000; text-decoration: none; }
+      .container{ max-width: 100%; }
+      h1{ font-size: 20pt } h2{ font-size: 14pt } h3{ font-size: 11.5pt }
+      .meta{ color:#333 }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container head">
+      <div>
+        <h1>Kelly Bonnville-Sexton</h1>
+        <p class="sub">Marine Science · GIS · Remote Sensing</p>
+        <div class="meta">
+          Eugene, OR · <a href="mailto:bonnvillek@gmail.com"></a> ·
+          <a href="https://github.com/kbonnville" target="_blank" rel="noopener">github.com/your-username</a> ·
+          <a href="https://www.linkedin.com/in/kelly-bonnville-sexton-01aa15254/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="cta">
+        <a class="btn" href="files/Kelly_BonnvilleSexton_Resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+        <a class="btn secondary" href="index.html">Back to Site</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel container">
+      <h2>Summary</h2>
+      <p>
+        Marine scientist and geographer specializing in <strong>remote sensing, GIS, and hydrology</strong>. Experienced with
+        <strong>X-band SAR (Capella, ICEYE)</strong>, <strong>PlanetScope</strong>, and multi-sensor workflows for mapping wetlands, surface water,
+        and hydrologic change across Alaska, the Everglades, and Brazil’s Pantanal. Strong in <strong>Python</strong> and <strong>R</strong>,
+        reproducible analysis, and communicating results to scientific, policy, and public audiences.
+      </p>
+    </section>
+
+    <section class="panel container">
+      <h2>Technical Skills</h2>
+      <div>
+        <span class="pill">Python (rasterio, geopandas, scikit-learn, skimage)</span>
+        <span class="pill">R (ggplot2, dplyr, tidyr)</span>
+        <span class="pill">SAR: Capella, ICEYE</span>
+        <span class="pill">PlanetScope · SWOT · PACE (context)</span>
+        <span class="pill">ArcGIS Pro · QGIS · SNAP · GEE</span>
+        <span class="pill">Terrain correction · Speckle filtering</span>
+        <span class="pill">Water/land classification · IoU · F1</span>
+        <span class="pill">Cartography & figure design</span>
+        <span class="pill">UAV surveys · GPS · pressure transducers</span>
+      </div>
+    </section>
+
+    <section class="panel container">
+      <h2>Education</h2>
+      <h3>M.S. Geography (expected Oct 2025) — University of Oregon</h3>
+      <div class="meta">Cryo-Hydro Lab · Remote sensing & hydrology</div>
+      <ul class="list-tight">
+        <li>Thesis: <em>Mapping Wetland Hydrology with X-band SAR (Capella & ICEYE) and PlanetScope</em></li>
+        <li>Focus: SAR classification, geolocation offsets, incidence-angle corrections, multi-sensor fusion</li>
+      </ul>
+
+      <h3>B.S. Marine Biology & Spatial Data Sciences — University of Oregon</h3>
+      <ul class="list-tight">
+        <li>Fieldwork: intertidal collections, wetland surveys, UAV/drone mapping</li>
+        <li>Leadership: President, Surf & Wakeboarding Clubs</li>
+      </ul>
+    </section>
+
+    <section class="panel container">
+      <h2>Research Experience</h2>
+      <h3>Graduate Researcher — University of Oregon, Cryo-HydrO Observation Leaders (COOL) Lab</h3>
+      <div class="meta">2023–Present · Eugene, OR</div>
+      <ul class="list-tight">
+        <li>Built Python workflow to classify X-band SAR into water/non-water across Alaska, Everglades, and Pantanal.</li>
+        <li>Validated with Planet & PLD; computed per-lake areas, centroids, geolocation offsets (accuracy, IoU, F1).</li>
+        <li>Analyzed incidence-angle effects on backscatter and mapping accuracy; produced reproducible figures & scripts.</li>
+        <li>Delivered posters and talks (AGU; departmental seminars); supported data sharing and documentation.</li>
+      </ul>
+
+      <h3>Research Assistant — Deep-Sea & Coastal Biology Projects</h3>
+      <div class="meta">Oregon coast & multi-site campaigns</div>
+      <ul class="list-tight">
+        <li>Collected and analyzed marine biological specimens in intertidal and deep-sea settings.</li>
+        <li>Supported ecological monitoring and biodiversity assessments; coordinated logistics in national parks.</li>
+      </ul>
+    </section>
+
+    <section class="panel container">
+      <h2>Teaching & Leadership</h2>
+      <h3>Graduate Employee — Geomorphology Labs</h3>
+      <div class="meta">University of Oregon</div>
+      <ul class="list-tight">
+        <li>Taught labs on sediment transport, hydrology, and geomorphic processes; graded and mentored students.</li>
+        <li>Provided one-on-one GIS/coding support; served as faculty liaison and graduate union steward.</li>
+      </ul>
+
+      <h3>Leadership Roles</h3>
+      <ul class="list-tight">
+        <li>President, Surf Club & Wakeboarding Club (USF): organized travel, competitions, mentoring.</li>
+        <li>Graduate Student Club Deputy Coordinator: events, outreach, and community building.</li>
+      </ul>
+    </section>
+
+    <section class="panel container">
+      <h2>Presentations & Publications</h2>
+      <ul class="list-tight">
+        <li><strong>AGU Poster (2024)</strong>: High-resolution SAR water classification with Planet validation.</li>
+        <li><strong>Seminar (2025)</strong>: Incidence-angle impacts & geolocation offsets in Alaska lake mapping.</li>
+        <li><strong>In preparation</strong>: Reproducible SAR pipeline for wetland hydrology (preprint forthcoming).</li>
+      </ul>
+    </section>
+
+    <section class="panel container">
+      <h2>Additional Experience & Service</h2>
+      <ul class="list-tight">
+        <li>Lifeguard (multiple seasons): emergency response, safety leadership, public engagement.</li>
+        <li>Coastal Cleanup (since middle school): conservation and community science outreach.</li>
+        <li>Yoga teacher training; creative projects (sewing, cartographic design).</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Kelly Bonnville-Sexton
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
