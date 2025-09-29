@@ -1,90 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to My Website</title>
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelly Bonnville-Sexton — Marine Science · GIS · Remote Sensing</title>
+  <meta name="description" content="Portfolio of Kelly Bonnville-Sexton — marine sciences, GIS, and remote sensing (X-band SAR: Capella, ICEYE). Projects, skills, and contact." />
+  <meta name="author" content="Kelly Bonnville-Sexton" />
+
+  <!-- Social preview (optional: update image path) -->
+  <meta property="og:title" content="Kelly Bonnville-Sexton — Marine Science · GIS · Remote Sensing" />
+  <meta property="og:description" content="Portfolio: marine sciences, GIS, and remote sensing (X-band SAR). Projects, skills, and contact." />
+  <meta property="og:image" content="https://username.github.io/images/AK.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts (system stack for fast load) -->
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f7f7;
-      color: #333;
+    :root{
+      --bg: #f7faf9;
+      --text: #24323a;
+      --muted: #5a707b;
+      --card: #ffffff;
+      --ring: rgba(46, 139, 87, 0.25); /* darkseagreen-ish focus ring */
+      --brand-1: #8fbc8f; /* darkseagreen */
+      --brand-2: #5f9ea0; /* cadetblue */
+      --brand-3: #0f6d6d; /* deeper teal for contrast */
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --maxw: 1100px;
     }
-    header {
-      background: #004466;
-      color: white;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a{color: var(--brand-3); text-decoration: none}
+    a:hover{text-decoration: underline}
+    img{max-width:100%;height:auto}
+
+    /* Header / Hero */
+    .hero{
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #073a3a;
+      padding: 2rem 1rem 3rem;
+      position: relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(1200px 800px at 110% -10%, rgba(255,255,255,0.18), transparent 60%),
+                  radial-gradient(900px 600px at -10% 110%, rgba(255,255,255,0.16), transparent 60%);
+      pointer-events:none;
+    }
+    .container{max-width: var(--maxw); margin: 0 auto; padding: 0 1rem;}
+    .hero-inner{display:grid; grid-template-columns: 1fr; gap: 2rem; align-items:center;}
+    @media (min-width: 860px){
+      .hero-inner{grid-template-columns: 1.2fr 1fr;}
+    }
+    .hero h1{
+      margin:0 0 .25rem 0;
+      font-size: clamp(1.8rem, 1.5rem + 2vw, 2.6rem);
+      letter-spacing: 0.2px;
+    }
+    .subtitle{color:#0a4646; font-weight:600; margin-bottom:1rem}
+    .hero p{margin: 0.25rem 0; color:#0a4646}
+    .taglist{display:flex; flex-wrap:wrap; gap:.5rem; margin-top: .75rem;}
+    .tag{
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: .35rem .6rem;
+      border-radius: 999px;
+      font-size: .9rem;
+      backdrop-filter: blur(4px);
+    }
+    .cta-row{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem}
+    .btn{
+      display:inline-block; padding:.7rem 1rem; border-radius: 999px; font-weight:600; border:1px solid transparent; box-shadow: var(--shadow);
+      background:#0b5c5c; color:white;
+    }
+    .btn:hover{filter: brightness(1.05)}
+    .btn.secondary{
+      background:white; color:#0b5c5c; border-color: rgba(11,92,92,0.2);
+    }
+
+    .headshot-wrap{
+      justify-self:center;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.9);
+      padding: .75rem;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+    }
+    .headshot{
+      width: 220px; height: 220px; object-fit: cover; border-radius:50%;
+      display:block;
+    }
+
+    /* Main Layout */
+    main{margin-top: -2rem;}
+    .panel{
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin: 0 auto 1.25rem;
+      width: min(100%, var(--maxw));
+    }
+    .panel h2{
+      margin-top:0; font-size: 1.35rem; letter-spacing:0.2px;
+    }
+    .grid{
+      display:grid; gap: 1rem;
+    }
+    @media (min-width: 860px){
+      .grid-2{grid-template-columns: 1fr 1fr;}
+      .grid-3{grid-template-columns: repeat(3, 1fr);}
+    }
+
+    /* Project Cards */
+    .card{
+      border: 1px solid #e8efed;
+      border-radius: calc(var(--radius) - 6px);
       padding: 1rem;
-      text-align: center;
+      background: #ffffff;
+      transition: transform .08s ease, box-shadow .08s ease, border-color .2s ease;
     }
-    nav {
-      margin: 0;
-      background: #006699;
-      display: flex;
-      justify-content: center;
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      border-color: #d7e7e2;
     }
-    nav a {
-      color: white;
-      padding: 1rem;
-      text-decoration: none;
+    .card h3{margin: .25rem 0 .5rem 0; font-size: 1.05rem}
+    .meta{color: var(--muted); font-size: .92rem; margin-bottom: .35rem}
+    .pill{
+      display:inline-block; margin-right:.35rem; margin-top:.35rem;
+      background: #eef6f3; color: #0f6d6d; border: 1px solid #d7ebe6; border-radius: 999px; padding: .25rem .5rem; font-size: .85rem;
     }
-    nav a:hover {
-      background: #004466;
+
+    /* Skills list */
+    .skills{display:flex; flex-wrap:wrap; gap:.5rem}
+    .skills .pill{margin:0}
+
+    /* Footer */
+    footer{padding: 2rem 1rem; text-align:center; color: var(--muted)}
+    .socials{display:flex; gap:.75rem; justify-content:center; margin-top:.5rem}
+    .socials a{
+      display:inline-block; padding:.45rem .75rem; border-radius: 999px; background:#e9f3f1; border:1px solid #d7ebe6; color:#0f6d6d; font-weight:600;
     }
-    main {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    footer {
-      background: #004466;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+    .socials a:hover{filter: brightness(1.04)}
+    /* Accessibility */
+    :focus-visible{outline: 3px solid var(--ring); outline-offset: 2px}
+    @media (prefers-reduced-motion: reduce){
+      * {animation: none !important; transition: none !important}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Hi, I’m Kelly 👋</h1>
-    <p>Welcome to my GitHub Pages website!</p>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1>Kelly Bonnville-Sexton</h1>
+        <div class="subtitle">Marine Science · GIS · Remote Sensing (X-band SAR)</div>
+        <p>I map water and wetland dynamics using Capella & ICEYE SAR, Planet optical data, and Python/R workflows.
+           My work spans Alaska (Yukon Flats & Petersville), the Everglades, and Brazil’s Pantanal.</p>
+
+        <div class="taglist" aria-label="key tags">
+          <span class="tag">Hydrology</span>
+          <span class="tag">Wetlands</span>
+          <span class="tag">SAR (Capella · ICEYE)</span>
+          <span class="tag">PlanetScope</span>
+          <span class="tag">Python · R</span>
+          <span class="tag">GIS · Remote Sensing</span>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn" href="files/Kelly_BonnvilleSexton_Resume.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn secondary" href="#projects">See Projects</a>
+        </div>
+      </div>
+
+      <div class="headshot-wrap">
+        <img class="headshot" src="images/AK.jpg" alt="Headshot of Kelly Bonnville-Sexton">
+      </div>
+    </div>
   </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
   <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I’m a researcher working with remote sensing, hydrology, and GIS.
-        This is my personal site where I share projects, ideas, and resources.
-      </p>
+    <!-- ABOUT + SKILLS -->
+    <section class="panel container">
+      <div class="grid grid-2">
+        <div>
+          <h2 id="about">About</h2>
+          <p>
+            I’m a geographer integrating X-band SAR with optical datasets to map surface-water extent, lake area,
+            and hydrologic change. I care about methods that are reproducible, interpretable, and ready for decision-makers.
+            My recent work focuses on incidence-angle corrections, geolocation offsets, and multi-sensor fusion.
+          </p>
+          <p>
+            Beyond research, I teach geomorphology labs, design clean data visualizations, and love mentoring students who are new to coding and GIS.
+          </p>
+        </div>
+        <div>
+          <h2>Skills</h2>
+          <div class="skills">
+            <span class="pill">Python (rasterio, geopandas, scikit-learn)</span>
+            <span class="pill">R (ggplot2, dplyr, tidyr)</span>
+            <span class="pill">SAR (Capella, ICEYE)</span>
+            <span class="pill">PlanetScope · PACE · SWOT (context)</span>
+            <span class="pill">ArcGIS Pro · QGIS · SNAP · GEE</span>
+            <span class="pill">Speckle filtering · Terrain correction</span>
+            <span class="pill">Water/land classification</span>
+            <span class="pill">Accuracy & IoU evaluation</span>
+            <span class="pill">Cartography & figure design</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
+    <!-- PROJECTS -->
+    <section class="panel container" id="projects">
+      <h2>Selected Projects</h2>
+      <div class="grid grid-3">
+        <!-- Project 1 -->
+        <article class="card">
+          <div class="meta">2025 · Alaska (Yukon Flats & Petersville)</div>
+          <h3>High-res SAR Surface-Water Mapping</h3>
+          <p>Built a Python workflow to classify X-band SAR (Capella/ICEYE) into water/non-water, validate with Planet, and export per-lake areas and centroids.</p>
+          <div>
+            <span class="pill">Python</span><span class="pill">Capella · ICEYE</span><span class="pill">Planet</span><span class="pill">IoU · F1</span>
+          </div>
+          <p style="margin-top:.5rem;">
+            <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener">Code</a>
+            · <a href="#" target="_blank" rel="noopener">Poster / Slides</a>
+          </p>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card">
+          <div class="meta">2025 · Florida Everglades</div>
+          <h3>Incidence-Angle Effects & Geolocation Offsets</h3>
+          <p>Analyzed how local incidence angle influences backscatter and mapping accuracy; computed centroid offsets vs. Planet and PLD lake shapes.</p>
+          <div>
+            <span class="pill">Raster analytics</span><span class="pill">Incidence angle</span><span class="pill">Geolocation</span>
+          </div>
+          <p style="margin-top:.5rem;">
+            <a href="#" target="_blank" rel="noopener">Report</a> · <a href="#" target="_blank" rel="noopener">Figures</a>
+          </p>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card">
+          <div class="meta">2024–2025 · Pantanal, Brazil</div>
+          <h3>Multi-Sensor Wetland Dynamics</h3>
+          <p>Integrated SAR with optical data to track seasonal surface-water extent across floodplains; created reproducible maps and dashboards.</p>
+          <div>
+            <span class="pill">Wetlands</span><span class="pill">Time series</span><span class="pill">Visualization</span>
+          </div>
+          <p style="margin-top:.5rem;">
+            <a href="#" target="_blank" rel="noopener">Map Gallery</a> · <a href="#" target="_blank" rel="noopener">README</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRESENTATIONS / PUBLICATIONS -->
+    <section class="panel container">
+      <h2>Presentations & Publications</h2>
       <ul>
-        <li>Wetland monitoring using X-band SAR</li>
-        <li>Geolocation offsets in Alaska lakes</li>
-        <li>Visualization of surface-water dynamics</li>
+        <li><strong>AGU Poster</strong>: X-band SAR water classification and validation with Planet (link to PDF).</li>
+        <li><strong>Seminar</strong>: Incidence angle & geolocation offsets in Alaska lake mapping (slides).</li>
+        <li><strong>In prep</strong>: Reproducible SAR pipeline for wetland hydrology (preprint link).</li>
       </ul>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>You can find me on <a href="https://github.com/username" target="_blank">GitHub</a>.</p>
-      <p>Or email me at: your.email@example.com</p>
+    <!-- CONTACT -->
+    <section class="panel container" id="contact">
+      <h2>Get in touch</h2>
+      <p>
+        I’m open to roles in marine sciences, GIS, and remote sensing—especially projects advancing wetland monitoring and hydrologic insight.
+        Email me at <a href="mailto:bonnvillek@gmail.com">your.email@example.com</a>.
+      </p>
+      <div class="socials">
+        <a href="https://github.com/kbonnville" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/kelly-bonnville-sexton-01aa15254/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:bonnvillek@gmail.com">Email</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Kelly Bonnville</p>
+    <div class="container">
+      © <span id="year"></span> Kelly Bonnville-Sexton · Built with GitHub Pages
+    </div>
   </footer>
+
+  <script>
+    // tiny enhancement: current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
