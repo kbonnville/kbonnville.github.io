@@ -1,17 +1,211 @@
-<section class="panel container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research — Kelly Bonnville-Sexton</title>
+  <meta name="description" content="Research in SAR hydrology, sea-ice dynamics, field and lab projects by Kelly Bonnville-Sexton." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Figure styling (safe to keep here even if already in style.css) */
+    .proj-figure { margin: 0 0 .6rem 0; border-radius: 14px; overflow: hidden;
+      border: 1px solid #e8efed; box-shadow: var(--shadow); }
+    .proj-figure img { display: block; width: 100%; height: 220px; object-fit: cover; }
+    .figcap { font-size: .9rem; color: var(--muted); margin-top: .35rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Shared navbar -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="experience.html" class="nav-link">Experience</a>
+    <a href="research.html" class="nav-link">Research</a>
+    <a href="publications.html" class="nav-link">Publications</a>
+    <a href="resume.html" class="nav-link">Resume</a>
+  </nav>
+
+  <!-- Sub-page header -->
   <header class="sub-hero">
-  <div class="container"><h1>Research</h1></div>
-</header>
-  <h2>Research</h2>
-  <article class="card">
-    <h3>High-res SAR Surface-Water Mapping</h3>
-    <div class="meta">Alaska · Everglades · Pantanal</div>
-    <p>Reproducible workflows using Capella & ICEYE SAR to map surface-water extent; validated with Planet; per-lake areas and centroid offsets.</p>
-    <div><span class="pill">Capella</span><span class="pill">ICEYE</span><span class="pill">Planet</span></div>
-    <p style="margin-top:.5rem;">
-      <a href="files/AGU_Oral_Slides_2024.pdf" target="_blank" rel="noopener">Slides</a>
-      · <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener">Code</a>
-    </p>
-  </article>
-  <!-- add more research topics/methods -->
-</section>
+    <div class="container"><h1>Research</h1></div>
+  </header>
+
+  <main>
+    <!-- Quick pointer back to role summaries -->
+    <section class="panel container">
+      <p class="muted" style="margin:0 0 .5rem 0;">
+        Looking for concise role summaries? 
+        <a class="btn secondary" href="experience.html">See Experience</a>
+      </p>
+    </section>
+
+    <!-- ===== Wetland Hydrology & SAR ===== -->
+    <section class="panel container" id="wetland-hydrology">
+      <h2>Wetland Hydrology & SAR</h2>
+
+      <!-- High-Res SAR Surface-Water Mapping -->
+      <article class="card" id="sar-water">
+        <figure class="proj-figure">
+          <a href="images/research/sar-water-example.jpg" target="_blank" rel="noopener">
+            <img src="images/research/sar-water-example.jpg" alt="Example SAR-derived surface-water map with lake outlines">
+          </a>
+          <figcaption class="figcap">SAR-derived surface-water classification validated with Planet imagery.</figcaption>
+        </figure>
+
+        <h3>High-Res SAR Surface-Water Mapping</h3>
+        <div class="meta">Alaska (Yukon Flats & Petersville) · Everglades · Pantanal</div>
+        <p>
+          Reproducible Python workflows using Capella & ICEYE X-band SAR to map surface-water extent; validation with
+          Planet imagery; per-lake areas and centroid offsets to quantify geolocation accuracy.
+        </p>
+        <div><span class="pill">Capella</span><span class="pill">ICEYE</span><span class="pill">Planet</span><span class="pill">Python</span><span class="pill">IoU · F1</span></div>
+        <p style="margin-top:.5rem;">
+          <a href="files/AGU_Oral_Slides_2024.pdf" target="_blank" rel="noopener">Slides</a>
+          · <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener">Code</a>
+        </p>
+      </article>
+
+      <!-- Incidence Angle & Geolocation -->
+      <article class="card" id="incidence-geolocation">
+        <figure class="proj-figure">
+          <a href="images/research/incidence-angle.jpg" target="_blank" rel="noopener">
+            <img src="images/research/incidence-angle.jpg" alt="Visualization of local incidence angle effects on backscatter">
+          </a>
+          <figcaption class="figcap">Local incidence-angle effects on backscatter and classification stability.</figcaption>
+        </figure>
+
+        <h3>Incidence-Angle Effects & Geolocation Offsets</h3>
+        <div class="meta">Method development</div>
+        <p>
+          Assessed how local incidence angle influences backscatter and classification; compared SAR-derived lake centroids with
+          Planet and PLD shapes to characterize offsets and bias.
+        </p>
+        <div><span class="pill">Incidence angle</span><span class="pill">Geolocation</span><span class="pill">Evaluation</span></div>
+        <p style="margin-top:.5rem;">
+          <a href="files/Seminar_Slides_2025.pdf" target="_blank" rel="noopener">Seminar slides</a>
+        </p>
+      </article>
+    </section>
+
+    <!-- ===== Sea-Ice Breakup Sequencing (Kivalina) ===== -->
+    <section class="panel container" id="kivalina-sequence">
+      <h2>Sea-Ice Dynamics</h2>
+
+      <article class="card">
+        <figure class="proj-figure">
+          <a href="images/research/kivalina-ice-sequence.jpg" target="_blank" rel="noopener">
+            <img src="images/research/kivalina-ice-sequence.jpg" alt="Kivalina Lagoon and river mouths during breakup season">
+          </a>
+          <figcaption class="figcap">Kivalina Lagoon, Kivalina & Wulik Rivers, and adjacent ocean across breakup seasons.</figcaption>
+        </figure>
+
+        <h3>Sequence of Sea-Ice Breakup — Kivalina Lagoon & Inflow Rivers</h3>
+        <div class="meta">Multi-season optical time-series classification</div>
+        <p>
+          Classified breakup timing for Kivalina Lagoon, the Kivalina River, the Wulik River, and the adjacent ocean
+          to test whether the <em>sequence</em> of opening influences system timing. Produced per-segment timelines and
+          cross-correlations to compare pathways.
+        </p>
+        <div><span class="pill">Ice dynamics</span><span class="pill">Time series</span><span class="pill">Optical</span></div>
+        <p style="margin-top:.5rem;">
+          <a href="files/Kivalina_Breakup_Methods.pdf" target="_blank" rel="noopener">Methods</a>
+          · <a href="files/Kivalina_Figures.pdf" target="_blank" rel="noopener">Figures</a>
+        </p>
+      </article>
+    </section>
+
+    <!-- ===== Alaska Fieldwork (separate from vessel & labs) ===== -->
+    <section class="panel container" id="alaska-field">
+      <h2>Alaska Fieldwork</h2>
+
+      <article class="card" id="petersville">
+        <figure class="proj-figure">
+          <a href="images/fieldwork/ak_gps.jpg" target="_blank" rel="noopener">
+            <img src="images/fieldwork/ak_gps.jpg" alt="Collecting GPS and ground reference data in Alaska wetlands">
+          </a>
+          <figcaption class="figcap">Collecting GPS/UAV/PT data to validate SAR/optical analyses.</figcaption>
+        </figure>
+
+        <h3>Ground Reference & Lake Surveys</h3>
+        <div class="meta">Petersville & Yukon Flats (NASA CSDA supported); Willamette River UAV; NASA SWOT Cal/Val</div>
+        <p>
+          Performed UAV, water-surface-elevation, and pressure-transducer surveys across multiple lakes and rivers
+          to validate satellite analyses; participated in a NASA SWOT calibration/validation campaign on the Willamette River.
+        </p>
+        <div><span class="pill">Field methods</span><span class="pill">UAV</span><span class="pill">Hydrology</span></div>
+      </article>
+    </section>
+
+    <!-- ===== Lab-Based Projects ===== -->
+    <section class="panel container" id="lab-projects">
+      <h2>Lab-Based Projects</h2>
+
+      <article class="card" id="maslakova">
+        <figure class="proj-figure">
+          <a href="images/labs/maslakova-dna.jpg" target="_blank" rel="noopener">
+            <img src="images/labs/maslakova-dna.jpg" alt="DNA extraction and gel electrophoresis bench setup">
+          </a>
+          <figcaption class="figcap">DNA extraction, PCR, and sequencing analysis (Geneious Prime).</figcaption>
+        </figure>
+
+        <h3>Maslakova Lab — Molecular Work</h3>
+        <div class="meta">DNA extraction · Gel electrophoresis · PCR · Geneious Prime</div>
+        <p>Performed DNA extractions, PCR, and gel electrophoresis; analyzed sequence data in Geneious Prime.</p>
+        <div><span class="pill">Molecular</span><span class="pill">PCR</span><span class="pill">Geneious</span></div>
+      </article>
+
+      <article class="card" id="vondassow">
+        <figure class="proj-figure">
+          <a href="images/labs/vondassow-micro.jpg" target="_blank" rel="noopener">
+            <img src="images/labs/vondassow-micro.jpg" alt="High-speed video microscopy of larvae">
+          </a>
+          <figcaption class="figcap">High-speed video microscopy of larval motion; plankton ID/sorting.</figcaption>
+        </figure>
+
+        <h3>Von Dassow Lab — Larval Motion & Plankton</h3>
+        <div class="meta">High-speed video microscopy · Plankton ID/Sorting</div>
+        <p>Captured larval motion via high-speed microscopy; collected/sorted/identified planktonic larvae.</p>
+        <div><span class="pill">Microscopy</span><span class="pill">Plankton</span></div>
+      </article>
+
+      <article class="card" id="galloway">
+        <figure class="proj-figure">
+          <a href="images/labs/abalone-sdm.jpg" target="_blank" rel="noopener">
+            <img src="images/labs/abalone-sdm.jpg" alt="Species distribution model maps for Red Abalone">
+          </a>
+          <figcaption class="figcap">Species distribution model (SDM) for Red Abalone using ArcGIS Pro & MaxEnt.</figcaption>
+        </figure>
+
+        <h3>Galloway Lab — Species Distribution Modeling</h3>
+        <div class="meta">Red Abalone · ArcGIS Pro · MaxEnt</div>
+        <p>Compiled biological/location data and led the creation of a Red Abalone SDM along the Oregon coast.</p>
+        <div><span class="pill">SDM</span><span class="pill">ArcGIS Pro</span><span class="pill">MaxEnt</span></div>
+      </article>
+
+      <article class="card" id="young">
+        <figure class="proj-figure">
+          <a href="images/labs/pyrosome.jpg" target="_blank" rel="noopener">
+            <img src="images/labs/pyrosome.jpg" alt="Pyrosome dissection and ROV video annotation">
+          </a>
+          <figcaption class="figcap">Pyrosome dissections; methane seep size quantification from ROV video.</figcaption>
+        </figure>
+
+        <h3>Young Lab — Deep-Sea Samples & Video Analysis</h3>
+        <div class="meta">Pyrosome dissections · ROV video analysis</div>
+        <p>Dissected pyrosomes and identified deep-sea plankton; analyzed ROV video to quantify methane seep size.</p>
+        <div><span class="pill">Deep-sea</span><span class="pill">ROV</span><span class="pill">Quantification</span></div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Auto-highlight current nav item -->
+  <script>
+    function normalize(p){ p=p.replace(/^\/+|\/+$/g,''); if(!p) return 'index.html'; if(!p.includes('.')) p=p+'.html'; return p; }
+    const current=normalize(location.pathname.split('/').pop());
+    document.querySelectorAll('.site-nav a').forEach(a=>{
+      const target=normalize(a.getAttribute('href')||'');
+      if(target===current){ a.classList.add('active'); a.setAttribute('aria-current','page'); }
+    });
+  </script>
+</body>
+</html>
