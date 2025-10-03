@@ -4,185 +4,207 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Experience — Kelly Bonnville-Sexton</title>
-    <style>
-    :root{
-      --bg: #f7faf9;
-      --text: #24323a;
-      --muted: #5a707b;
-      --card: #ffffff;
-      --ring: rgba(46, 139, 87, 0.25); /* darkseagreen-ish focus ring */
-      --brand-1: #8fbc8f; /* darkseagreen */
-      --brand-2: #5f9ea0; /* cadetblue */
-      --brand-3: #0f6d6d; /* deeper teal for contrast */
-      --shadow: 0 8px 30px rgba(0,0,0,0.08);
-      --radius: 18px;
-      --maxw: 1100px;
+  <meta name="description" content="Experience across research, field, vessel, and customer-facing roles by Kelly Bonnville-Sexton." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Simple vertical timeline */
+    .timeline { position: relative; margin: .5rem 0 0 0; padding-left: 1rem; }
+    .timeline::before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: #dfeae7; }
+    .t-item { position: relative; margin: 0 0 1rem 0; padding-left: 1.5rem; }
+    .t-item::before {
+      content: ""; position: absolute; left: 2px; top: .35rem; width: 16px; height: 16px; border-radius: 50%;
+      background: #fff; border: 2px solid #0b5c5c;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a{color: var(--brand-3); text-decoration: none}
-    a:hover{text-decoration: underline}
-    img{max-width:100%;height:auto}
-
-    /* Header / Hero */
-    .hero{
-      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
-      color: #073a3a;
-      padding: 2rem 1rem 3rem;
-      position: relative;
-      overflow:hidden;
-    }
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(1200px 800px at 110% -10%, rgba(255,255,255,0.18), transparent 60%),
-                  radial-gradient(900px 600px at -10% 110%, rgba(255,255,255,0.16), transparent 60%);
-      pointer-events:none;
-    }
-    .container{max-width: var(--maxw); margin: 0 auto; padding: 0 1rem;}
-    .hero-inner{display:grid; grid-template-columns: 1fr; gap: 2rem; align-items:center;}
-    @media (min-width: 860px){
-      .hero-inner{grid-template-columns: 1.2fr 1fr;}
-    }
-    .hero h1{
-      margin:0 0 .25rem 0;
-      font-size: clamp(1.8rem, 1.5rem + 2vw, 2.6rem);
-      letter-spacing: 0.2px;
-    }
-    .subtitle{color:#0a4646; font-weight:600; margin-bottom:1rem}
-    .hero p{margin: 0.25rem 0; color:#0a4646}
-    .taglist{display:flex; flex-wrap:wrap; gap:.5rem; margin-top: .75rem;}
-    .tag{
-      background: rgba(255,255,255,0.6);
-      border: 1px solid rgba(255,255,255,0.7);
-      padding: .35rem .6rem;
-      border-radius: 999px;
-      font-size: .9rem;
-      backdrop-filter: blur(4px);
-    }
-    .cta-row{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem}
-    .btn{
-      display:inline-block; padding:.7rem 1rem; border-radius: 999px; font-weight:600; border:1px solid transparent; box-shadow: var(--shadow);
-      background:#0b5c5c; color:white;
-    }
-    .btn:hover{filter: brightness(1.05)}
-    .btn.secondary{
-      background:white; color:#0b5c5c; border-color: rgba(11,92,92,0.2);
-    }
-
-    .headshot-wrap{
-      justify-self:center;
-      background: rgba(255,255,255,0.8);
-      border: 0.5px solid rgba(255,255,255,0.9);
-      padding: .75rem;
-      border-radius: 50%;
-      box-shadow: var(--shadow);
-    }
-    .headshot{
-      width: 250px; height: 250px; object-fit: cover; border-radius:50%;
-      display:block;
-    }
-
-    /* Main Layout */
-    main{margin-top: 1rem;}
-    .panel{
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.5rem;
-      margin: 0 auto 1.25rem;
-      width: min(100%, var(--maxw));
-    }
-    .panel h2{
-      margin-top:0; font-size: 1.35rem; letter-spacing:0.2px;
-    }
-    .grid{
-      display:grid; gap: 1rem;
-    }
-    @media (min-width: 860px){
-      .grid-2{grid-template-columns: 1fr 1fr;}
-      .grid-3{grid-template-columns: repeat(3, 1fr);}
-    }
-
-    /* Project Cards */
-    .card{
-      border: 1px solid #e8efed;
-      border-radius: calc(var(--radius) - 6px);
-      padding: 1rem;
-      background: #ffffff;
-      transition: transform .08s ease, box-shadow .08s ease, border-color .2s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-      border-color: #d7e7e2;
-    }
-    .card h3{margin: .25rem 0 .5rem 0; font-size: 1.05rem}
-    .meta{color: var(--muted); font-size: .92rem; margin-bottom: .35rem}
-    .pill{
-      display:inline-block; margin-right:.35rem; margin-top:.35rem;
-      background: #eef6f3; color: #0f6d6d; border: 1px solid #d7ebe6; border-radius: 999px; padding: .25rem .5rem; font-size: .85rem;
-    }
-
-    /* Skills list */
-    .skills{display:flex; flex-wrap:wrap; gap:.5rem}
-    .skills .pill{margin:0}
-
-    /* Footer */
-    footer{padding: 2rem 1rem; text-align:center; color: var(--muted)}
-    .socials{display:flex; gap:.75rem; justify-content:center; margin-top:.5rem}
-    .socials a{
-      display:inline-block; padding:.45rem .75rem; border-radius: 999px; background:#e9f3f1; border:1px solid #d7ebe6; color:#0f6d6d; font-weight:600;
-    }
-    .socials a:hover{filter: brightness(1.04)}
-    /* Accessibility */
-    :focus-visible{outline: 3px solid var(--ring); outline-offset: 2px}
-    @media (prefers-reduced-motion: reduce){
-      * {animation: none !important; transition: none !important}
-    }
+    .t-title { margin: 0; font-weight: 600; }
+    .t-meta { color: var(--muted); font-size: .92rem; margin: .15rem 0 .35rem 0; }
+    .t-figure { margin: .35rem 0 0 0; border-radius: 12px; overflow: hidden; border: 1px solid #e8efed; box-shadow: var(--shadow); }
+    .t-figure img { display: block; width: 100%; height: 180px; object-fit: cover; }
   </style>
-  <!-- Paste the SAME <style> block from your index.html here so styling matches -->
 </head>
 <body>
 
-  <!-- Simple navbar (same on every page, update the "active" class per page) -->
+  <!-- Shared navbar -->
   <nav class="site-nav">
     <a href="index.html" class="nav-link">Home</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="experience.html" class="nav-link active">Experience</a>
+    <a href="experience.html" class="nav-link">Experience</a>
     <a href="research.html" class="nav-link">Research</a>
     <a href="publications.html" class="nav-link">Publications</a>
     <a href="resume.html" class="nav-link">Resume</a>
   </nav>
 
+  <!-- Sub-page header -->
+  <header class="sub-hero">
+    <div class="container"><h1>Experience</h1></div>
+  </header>
+
   <main>
+    <!-- Pointer to Research page -->
     <section class="panel container">
-      <h2>Experience</h2>
-      <!-- Replace with your cards/sections -->
+      <p class="muted" style="margin:0 0 .5rem 0;">
+        Want project artifacts (figures, slides, code)? 
+        <a class="btn secondary" href="research.html">See Research & Projects</a>
+      </p>
+    </section>
+
+    <!-- Research & Technical roles (cards) -->
+    <section class="panel container">
+      <h2>Research & Technical Roles</h2>
+
       <article class="card">
-        <h3>Graduate Researcher · Cryo-Hydro Lab (UO)</h3>
-        <div class="meta">2023–Present · Remote sensing & hydrology</div>
+        <figure class="t-figure">
+          <img src="images/labs/sar-lab.jpg" alt="SAR/GIS analysis workstation (Cryo-Hydro Lab)">
+        </figure>
+        <h3>Graduate Researcher — Cryo-Hydro Lab, University of Oregon</h3>
+        <div class="meta">2023 – Present · Remote sensing & hydrology</div>
         <ul class="list-tight">
-          <li>Built SAR water-mapping workflow (Capella/ICEYE) with Planet validation (IoU, F1).</li>
-          <li>Incidence-angle analysis & geolocation offsets; reproducible figures/scripts.</li>
+          <li>Reproducible Python workflows for X-band SAR (Capella, ICEYE) water/non-water classification across Alaska, Everglades, and Pantanal.</li>
+          <li>Validation with Planet imagery; per-lake areas and centroid offsets (IoU/F1).</li>
+          <li>Explored local incidence-angle impacts on backscatter and accuracy; documented methods and figures.</li>
         </ul>
-        <div><span class="pill">Python</span><span class="pill">SAR</span><span class="pill">GIS</span></div>
+        <div><span class="pill">Python</span><span class="pill">Capella</span><span class="pill">ICEYE</span><span class="pill">Planet</span><span class="pill">GIS</span></div>
       </article>
 
-      <details class="card" style="padding:1rem;">
-        <summary style="cursor:pointer; font-weight:600;">Additional Experience (customer service, vet assistant, lifeguard)</summary>
-        <div style="margin-top:.75rem">
-          <p class="meta">Shows reliability, communication, multitasking—often worked multiple jobs while in school.</p>
-          <!-- add brief bullets for each role -->
+      <article class="card">
+        <figure class="t-figure">
+          <img src="images/vessel/cruise.jpg" alt="At sea during research cruise (R/V Atlantis)">
+        </figure>
+        <h3>Deep-Sea Research Expedition — R/V Atlantis</h3>
+        <div class="meta">2022 · CTD & MOCNESS · Alvin dive video analysis</div>
+        <ul class="list-tight">
+          <li>Supported deployment/recovery of CTD and MOCNESS systems; sorted/identified larval specimens.</li>
+          <li>Analyzed high-resolution video from HOV Alvin dives.</li>
+        </ul>
+        <div><span class="pill">Sampling</span><span class="pill">CTD</span><span class="pill">MOCNESS</span><span class="pill">Video analysis</span></div>
+      </article>
+    </section>
+
+    <!-- Fieldwork (card, cross-linked to Research) -->
+    <section class="panel container">
+      <h2>Fieldwork</h2>
+      <article class="card">
+        <figure class="t-figure">
+          <img src="images/fieldwork/ak_gps.jpg" alt="Field GPS/UAV/PT surveys in Alaska">
+        </figure>
+        <h3>Alaska & Oregon Hydrology Surveys</h3>
+        <div class="meta">2023 · Petersville & Yukon Flats (NASA CSDA), Willamette River UAV · NASA SWOT Cal/Val</div>
+        <ul class="list-tight">
+          <li>UAV, water-surface-elevation, and pressure-transducer surveys to validate SAR/optical analyses.</li>
+          <li>Contributed to NASA SWOT calibration/validation campaign on the Willamette River.</li>
+        </ul>
+        <p style="margin-top:.5rem;"><a class="btn secondary" href="research.html#alaska-field">See fieldwork in Research</a></p>
+      </article>
+    </section>
+
+    <!-- Customer-facing & seasonal roles (timeline + optional thumbnails) -->
+    <section class="panel container">
+      <h2>Customer-Facing & Seasonal Roles</h2>
+      <div class="timeline">
+
+        <div class="t-item">
+          <h3 class="t-title">Recreation Equipment, Inc. (REI) — Customer Service</h3>
+          <div class="t-meta">2022 – 2023 · POS, member support, product guidance</div>
+          <ul class="list-tight">
+            <li>Assisted customers with purchases/special orders and membership questions; maintained product knowledge.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/rei.jpg" alt="Customer service desk"></figure>
         </div>
+
+        <div class="t-item">
+          <h3 class="t-title">Banfield Pet Hospital — Veterinary Assistant / Client Service Coordinator</h3>
+          <div class="t-meta">2018 – 2023 · Eugene, OR</div>
+          <ul class="list-tight">
+            <li>Client communication and triage; intake/discharge; liaison between doctors and clients.</li>
+            <li>Specimen handling and lab workflows; scheduling and medical note support.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/banfield.jpg" alt="Veterinary clinic front desk"></figure>
+        </div>
+
+        <div class="t-item">
+          <h3 class="t-title">Best Friends Pet Care — CSR / Playtime Associate / Animal Care Tech</h3>
+          <div class="t-meta">2017 · Oklahoma City, OK</div>
+          <ul class="list-tight">
+            <li>Front-of-house check-ins; facility organization; pet care decisions and record updates.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/petcare.jpg" alt="Pet care facility"></figure>
+        </div>
+
+        <div class="t-item">
+          <h3 class="t-title">Aramark (Yosemite National Park)</h3>
+          <div class="t-meta">2016 – 2017 · Half Dome Village & Badger Pass</div>
+          <ul class="list-tight">
+            <li>Lifeguard — pool safety & emergency response.</li>
+            <li>Ski Fitter / Lift Operator — guest equipment fitting & operations.</li>
+            <li>Roomskeeper — lodging prep, cleaning, and maintenance tasks.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/yosemite.jpg" alt="Yosemite seasonal roles"></figure>
+        </div>
+
+        <div class="t-item">
+          <h3 class="t-title">Host — Gold Rush Restaurant (Denali National Park)</h3>
+          <div class="t-meta">2015 · Denali, AK</div>
+          <ul class="list-tight">
+            <li>Reservations, guest seating, and high-volume service coordination.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/denali.jpg" alt="Denali restaurant hosting"></figure>
+        </div>
+
+        <div class="t-item">
+          <h3 class="t-title">American Eagle — Cashier / Sales Associate</h3>
+          <div class="t-meta">2015 · Tampa, FL</div>
+          <ul class="list-tight">
+            <li>Fitting room support, customer assistance, and phone queries.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/retail.jpg" alt="Retail assistance"></figure>
+        </div>
+
+        <div class="t-item">
+          <h3 class="t-title">Target — Hardlines Sales Associate</h3>
+          <div class="t-meta">2014 – 2015 · Tampa, FL</div>
+          <ul class="list-tight">
+            <li>Stocking, sales floor design, POS, and store upkeep.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/target.jpg" alt="Target store floor"></figure>
+        </div>
+
+        <div class="t-item">
+          <h3 class="t-title">SeaWorld Parks (Adventure Island) — Lifeguard</h3>
+          <div class="t-meta">2013 – 2014 · Tampa, FL</div>
+          <ul class="list-tight">
+            <li>First-aid/CPR, ride safety operations, and guest assistance.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/waterpark.jpg" alt="Waterpark lifeguarding"></figure>
+        </div>
+
+        <div class="t-item">
+          <h3 class="t-title">CherryBerry Frozen Yogurt — Associate</h3>
+          <div class="t-meta">2013 · Tampa, FL</div>
+          <ul class="list-tight">
+            <li>Guest service, POS, opening/closing procedures, and shop upkeep.</li>
+          </ul>
+          <figure class="t-figure"><img src="images/experience/froyo.jpg" alt="Frozen yogurt shop"></figure>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Optional: fold the long list if you want -->
+    <!--
+    <section class="panel container">
+      <details class="card"><summary style="cursor:pointer;font-weight:600">Show all customer-facing roles</summary>
+        ...put the timeline here...
       </details>
     </section>
+    -->
   </main>
+
+  <!-- Auto-highlight current nav item -->
+  <script>
+    function normalize(p){ p=p.replace(/^\/+|\/+$/g,''); if(!p) return 'index.html'; if(!p.includes('.')) p=p+'.html'; return p; }
+    const current=normalize(location.pathname.split('/').pop());
+    document.querySelectorAll('.site-nav a').forEach(a=>{
+      const target=normalize(a.getAttribute('href')||'');
+      if(target===current){ a.classList.add('active'); a.setAttribute('aria-current','page'); }
+    });
+  </script>
 </body>
 </html>
