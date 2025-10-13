@@ -7,43 +7,37 @@
   <meta name="description" content="Experience across research, field, vessel, and additional work by Kelly Bonnville-Sexton." />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ===== Center-line timeline with dates on the right (no photos) ===== */
+    /* ---- Square media cards for photo sections ---- */
+    .card.media { display:grid; grid-template-columns: 280px 1fr; gap:1rem; align-items:start; }
+    .card.media .proj-figure { margin:0; aspect-ratio: 1 / 1; border-radius:12px; overflow:hidden; border:1px solid #e8efed; box-shadow: var(--shadow); }
+    .card.media .proj-figure img { width:100%; height:100%; object-fit: cover; display:block; }
+    @media (max-width: 860px) { .card.media { grid-template-columns: 1fr; } }
+
+    /* ---- Lightbox (same as research) ---- */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: none; align-items: center; justify-content: center; z-index: 9999; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 12px; background:#000; }
+    .lb-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.9); border: 0; padding: .6rem .8rem; border-radius: 999px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow); }
+    .lb-prev { left: 1rem; } .lb-next { right: 1rem; }
+    .lb-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,.95); border: 0; padding: .45rem .65rem; border-radius: 999px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow); }
+    .lb-counter { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); color: #fff; background: rgba(0,0,0,.35); padding: .25rem .6rem; border-radius: 8px; font-size: .9rem; }
+
+    /* ---- Additional Work Experience: center-line timeline (no photos) ---- */
     .timeline { margin: .5rem 0 0 0; }
-    .t-row {
-      display: grid;
-      grid-template-columns: 1fr 28px minmax(160px, 220px); /* content | line | dates */
-      column-gap: 1rem;
-      align-items: start;
-      margin-bottom: 1rem;
-    }
+    .t-row { display: grid; grid-template-columns: 1fr 28px minmax(160px, 220px); column-gap: 1rem; align-items: start; margin-bottom: 1rem; }
     .t-content.card { margin: 0; }
-    .t-line {
-      position: relative; width: 2px; background: #dfeae7; margin: 0 auto; min-height: 80px;
-    }
-    .t-dot {
-      position: absolute; top: 12px; left: 50%; transform: translate(-50%, -50%);
-      width: 14px; height: 14px; border-radius: 50%;
-      background: #fff; border: 2px solid #0b5c5c;
-    }
+    .t-line { position: relative; width: 2px; background: #dfeae7; margin: 0 auto; min-height: 80px; }
+    .t-dot { position: absolute; top: 12px; left: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 2px solid #0b5c5c; }
     .t-date { font-size: .95rem; color: var(--muted); line-height: 1.3; padding-top: .2rem; }
     .t-date-mobile { display: none; }
     .list-tight { margin:.2rem 0 .6rem 0; padding-left:1.1rem; }
-
-    /* Mobile: collapse to single column, show dates under content */
     @media (max-width: 720px) {
       .t-row { grid-template-columns: 1fr; }
       .t-line, .t-date { display: none; }
       .t-content.card { position: relative; border-left: 2px solid #dfeae7; padding-left: 1rem; }
-      .t-content.card::before {
-        content: ""; position: absolute; left: -9px; top: 12px; width: 14px; height: 14px; border-radius: 50%;
-        background: #fff; border: 2px solid #0b5c5c;
-      }
+      .t-content.card::before { content: ""; position: absolute; left: -9px; top: 12px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 2px solid #0b5c5c; }
       .t-date-mobile { display: block; color: var(--muted); font-size: .95rem; margin-top: .35rem; }
     }
-
-    /* Small helper for card images on research/fieldwork (keeps a consistent height) */
-    .t-figure { margin: .35rem 0 0 0; border-radius: 12px; overflow: hidden; border: 1px solid #e8efed; box-shadow: var(--shadow); }
-    .t-figure img { display: block; width: 100%; height: 180px; object-fit: cover; }
   </style>
 </head>
 <body>
@@ -63,79 +57,88 @@
   </header>
 
   <main>
-    <!-- Pointer to Research page -->
+    <!-- pointer to Research -->
     <section class="panel container">
       <p class="muted" style="margin:0 0 .5rem 0;">
-        Looking for figures, slides, and code? 
-        <a class="btn secondary" href="research.html">See Research & Projects</a>
+        Looking for figures, slides, and code? <a class="btn secondary" href="research.html">See Research & Projects</a>
       </p>
     </section>
 
-    <!-- Research & Technical roles (with photos) -->
+    <!-- Research & Technical roles (with square thumbnails + gallery) -->
     <section class="panel container">
       <h2>Research & Technical Roles</h2>
 
-      <article class="card">
-        <figure class="t-figure">
+      <article class="card media">
+        <figure class="proj-figure" data-gallery='["images/labs/sar-lab.jpg","images/research/sar-overview.jpg","images/research/sar-water-example.jpg"]'>
           <img src="images/labs/sar-lab.jpg" alt="SAR/GIS analysis workstation (Cryo-Hydro Lab)">
         </figure>
-        <h3>Graduate Researcher — Cryo-HydrO Observation Leaders (COOL) Lab, University of Oregon</h3>
-        <div class="meta">2023 – Present · Remote sensing & hydrology</div>
-        <ul class="list-tight">
-          <li>Reproducible Python workflows for X-band SAR (Capella, ICEYE) water/non-water classification across Alaska, Everglades, and Pantanal.</li>
-          <li>Validation with Planet imagery; per-lake areas and centroid offsets (IoU/F1).</li>
-          <li>Assessed local incidence-angle impacts on backscatter and accuracy; documented methods and figures.</li>
-        </ul>
-        <div><span class="pill">Python</span><span class="pill">Capella</span><span class="pill">ICEYE</span><span class="pill">Planet</span><span class="pill">GIS</span></div>
+        <div>
+          <h3>Graduate Researcher — Cryo-Hydro Lab, University of Oregon</h3>
+          <div class="meta">2023 – Present · Remote sensing & hydrology</div>
+          <ul class="list-tight">
+            <li>Python workflows for X-band SAR (Capella, ICEYE) water/non-water classification across Alaska, Everglades, and Pantanal.</li>
+            <li>Validation with Planet imagery; per-lake areas and centroid offsets (IoU/F1).</li>
+            <li>Assessed local incidence-angle impacts on backscatter and accuracy; documented methods and figures.</li>
+          </ul>
+          <div><span class="pill">Python</span><span class="pill">Capella</span><span class="pill">ICEYE</span><span class="pill">Planet</span><span class="pill">GIS</span></div>
+          <p style="margin-top:.5rem;">
+            <button class="btn" data-gallery='["images/labs/sar-lab.jpg","images/research/sar-overview.jpg","images/research/sar-water-example.jpg"]'>View gallery (3)</button>
+          </p>
+        </div>
       </article>
 
-      <article class="card">
-        <figure class="t-figure">
-          <img src="images/fieldwork/Atlantis.jpg" alt="At sea during research cruise (R/V Atlantis)">
+      <article class="card media">
+        <figure class="proj-figure" data-gallery='["images/vessel/cruise.jpg","images/vessel/ctd.jpg","images/vessel/alvin.jpg"]'>
+          <img src="images/vessel/cruise.jpg" alt="At sea during research cruise (R/V Atlantis)">
         </figure>
-        <h3>Deep-Sea Research Expedition — R/V Atlantis</h3>
-        <div class="meta">2022 · CTD & MOCNESS · Alvin dive video analysis</div>
-        <ul class="list-tight">
-          <li>Supported deployment/recovery of CTD and MOCNESS systems; sorted/identified larval specimens.</li>
-          <li>Analyzed high-resolution video from HOV Alvin dives.</li>
-        </ul>
-        <div><span class="pill">Sampling</span><span class="pill">CTD</span><span class="pill">MOCNESS</span><span class="pill">Video analysis</span></div>
+        <div>
+          <h3>Deep-Sea Research Expedition — R/V Atlantis</h3>
+          <div class="meta">2022 · CTD & MOCNESS · Alvin dive video analysis</div>
+          <ul class="list-tight">
+            <li>Supported deployment/recovery of CTD and MOCNESS systems; sorted/identified larval specimens.</li>
+            <li>Analyzed high-resolution video from HOV Alvin dives.</li>
+          </ul>
+          <div><span class="pill">Sampling</span><span class="pill">CTD</span><span class="pill">MOCNESS</span><span class="pill">Video analysis</span></div>
+          <p style="margin-top:.5rem;">
+            <button class="btn" data-gallery='["images/vessel/cruise.jpg","images/vessel/ctd.jpg","images/vessel/alvin.jpg"]'>View gallery (3)</button>
+          </p>
+        </div>
       </article>
     </section>
 
-    <!-- Fieldwork (with photo) -->
+    <!-- Fieldwork (with square thumbnail + gallery) -->
     <section class="panel container">
       <h2>Fieldwork</h2>
-      <article class="card">
-        <figure class="t-figure">
-          <img src="images/fieldwork/SWE.jpg" alt="Field GPS/UAV/PT surveys in Alaska">
+      <article class="card media">
+        <figure class="proj-figure" data-gallery='["images/fieldwork/ak_gps.jpg","images/fieldwork/ak_uav.jpg","images/fieldwork/ak_lake.jpg"]'>
+          <img src="images/fieldwork/ak_gps.jpg" alt="Field GPS/UAV/PT surveys in Alaska">
         </figure>
-        <h3>Alaska & Oregon Hydrology Surveys</h3>
-        <div class="meta">2023 · Petersville & Yukon Flats (NASA CSDA), Willamette River UAV · NASA SWOT Cal/Val</div>
-        <ul class="list-tight">
-          <li>UAV, water-surface-elevation, and pressure-transducer surveys to validate SAR/optical analyses.</li>
-          <li>Contributed to a NASA SWOT calibration/validation campaign on the Willamette River.</li>
-        </ul>
-        <p style="margin-top:.5rem;"><a class="btn secondary" href="research.html#alaska-field">See fieldwork in Research</a></p>
+        <div>
+          <h3>Alaska & Oregon Hydrology Surveys</h3>
+          <div class="meta">2023 · Petersville & Yukon Flats (NASA CSDA), Willamette River UAV · NASA SWOT Cal/Val</div>
+          <ul class="list-tight">
+            <li>UAV, water-surface-elevation, and pressure-transducer surveys to validate SAR/optical analyses.</li>
+            <li>Contributed to a NASA SWOT calibration/validation campaign on the Willamette River.</li>
+          </ul>
+          <p style="margin-top:.5rem;">
+            <a class="btn secondary" href="research.html#alaska-field">See fieldwork in Research</a>
+            <button class="btn" data-gallery='["images/fieldwork/ak_gps.jpg","images/fieldwork/ak_uav.jpg","images/fieldwork/ak_lake.jpg"]'>View gallery (3)</button>
+          </p>
+        </div>
       </article>
     </section>
 
     <!-- Additional Work Experience (timeline, NO photos) -->
     <section class="panel container">
       <h2>Additional Work Experience</h2>
-      <p class="muted" style="margin:.15rem 0 .6rem 0;">
-        Client services, animal care, and seasonal operations (selected roles).
-      </p>
+      <p class="muted" style="margin:.15rem 0 .6rem 0;">Client services, animal care, and seasonal operations (selected roles).</p>
 
       <div class="timeline">
-
         <div class="t-row">
           <div class="t-content card">
             <h3>Recreation Equipment, Inc. (REI) — Customer Service</h3>
             <p class="meta">POS · Member support · Product guidance</p>
-            <ul class="list-tight">
-              <li>Assisted customers with purchases/special orders and membership questions; maintained product knowledge.</li>
-            </ul>
+            <ul class="list-tight"><li>Assisted customers with purchases/special orders and membership questions; maintained product knowledge.</li></ul>
             <div class="t-date-mobile">2022–2023 · Eugene, OR</div>
           </div>
           <div class="t-line"><span class="t-dot"></span></div>
@@ -160,9 +163,7 @@
           <div class="t-content card">
             <h3>Best Friends Pet Care — CSR / Playtime Associate / Animal Care Tech</h3>
             <p class="meta">Customer service · Facility ops · Animal care</p>
-            <ul class="list-tight">
-              <li>Check-ins, facility organization, and pet-care decisions; updated records and supported owners.</li>
-            </ul>
+            <ul class="list-tight"><li>Check-ins, facility organization, and pet-care decisions; updated records and supported owners.</li></ul>
             <div class="t-date-mobile">2017 · Oklahoma City, OK</div>
           </div>
           <div class="t-line"><span class="t-dot"></span></div>
@@ -188,9 +189,7 @@
           <div class="t-content card">
             <h3>Gold Rush Restaurant — Host</h3>
             <p class="meta">Reservations · High-volume guest flow</p>
-            <ul class="list-tight">
-              <li>Managed reservations, seating, and front-of-house coordination during peak seasons.</li>
-            </ul>
+            <ul class="list-tight"><li>Managed reservations, seating, and front-of-house coordination during peak seasons.</li></ul>
             <div class="t-date-mobile">2015 · Denali, AK</div>
           </div>
           <div class="t-line"><span class="t-dot"></span></div>
@@ -201,9 +200,7 @@
           <div class="t-content card">
             <h3>American Eagle — Cashier / Sales Associate</h3>
             <p class="meta">Customer assistance · Fitting rooms · Phone support</p>
-            <ul class="list-tight">
-              <li>Served customers on the sales floor and fitting rooms; answered product and stock questions.</li>
-            </ul>
+            <ul class="list-tight"><li>Served customers on the sales floor and fitting rooms; answered product and stock questions.</li></ul>
             <div class="t-date-mobile">2015 · Tampa, FL</div>
           </div>
           <div class="t-line"><span class="t-dot"></span></div>
@@ -214,9 +211,7 @@
           <div class="t-content card">
             <h3>Target — Hardlines Sales Associate</h3>
             <p class="meta">Stocking · Floor design · POS</p>
-            <ul class="list-tight">
-              <li>Stocked, organized, and maintained sales floor; POS and guest assistance.</li>
-            </ul>
+            <ul class="list-tight"><li>Stocked, organized, and maintained sales floor; POS and guest assistance.</li></ul>
             <div class="t-date-mobile">2014–2015 · Tampa, FL</div>
           </div>
           <div class="t-line"><span class="t-dot"></span></div>
@@ -227,9 +222,7 @@
           <div class="t-content card">
             <h3>SeaWorld Parks (Adventure Island) — Lifeguard</h3>
             <p class="meta">Safety · First-aid/CPR · Guest assistance</p>
-            <ul class="list-tight">
-              <li>Ensured guest safety; performed first-aid/CPR; supported ride operations during peak volume.</li>
-            </ul>
+            <ul class="list-tight"><li>Ensured guest safety; performed first-aid/CPR; supported ride operations during peak volume.</li></ul>
             <div class="t-date-mobile">2013–2014 · Tampa, FL</div>
           </div>
           <div class="t-line"><span class="t-dot"></span></div>
@@ -240,15 +233,12 @@
           <div class="t-content card">
             <h3>CherryBerry Frozen Yogurt — Associate</h3>
             <p class="meta">Guest service · POS · Opening/closing</p>
-            <ul class="list-tight">
-              <li>Handled POS, opening/closing procedures, and guest service in a fast-paced shop.</li>
-            </ul>
+            <ul class="list-tight"><li>Handled POS, opening/closing procedures, and guest service in a fast-paced shop.</li></ul>
             <div class="t-date-mobile">2013 · Tampa, FL</div>
           </div>
           <div class="t-line"><span class="t-dot"></span></div>
           <div class="t-date">2013<br>Tampa, FL</div>
         </div>
-
       </div>
     </section>
   </main>
@@ -261,6 +251,50 @@
       const target=normalize(a.getAttribute('href')||'');
       if(target===current){ a.classList.add('active'); a.setAttribute('aria-current','page'); }
     });
+  </script>
+
+  <!-- Lightbox script (same as research) -->
+  <script>
+    (function(){
+      const lb = document.createElement('div');
+      lb.className = 'lightbox';
+      lb.innerHTML = `
+        <button class="lb-close" aria-label="Close">✕</button>
+        <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
+        <img alt="">
+        <button class="lb-btn lb-next" aria-label="Next">›</button>
+        <div class="lb-counter" aria-live="polite"></div>
+      `;
+      document.body.appendChild(lb);
+      const imgEl = lb.querySelector('img');
+      const prevBtn = lb.querySelector('.lb-prev');
+      const nextBtn = lb.querySelector('.lb-next');
+      const closeBtn = lb.querySelector('.lb-close');
+      const counter = lb.querySelector('.lb-counter');
+      let photos = []; let i = 0;
+
+      function show(k){ i = (k+photos.length)%photos.length; imgEl.src = photos[i]; counter.textContent = (i+1)+' / '+photos.length; }
+      function open(arr){ photos = arr; if(!photos.length) return; show(0); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+      function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+
+      prevBtn.onclick = ()=>show(i-1);
+      nextBtn.onclick = ()=>show(i+1);
+      closeBtn.onclick = close;
+      lb.addEventListener('click', e => { if(e.target === lb) close(); });
+      document.addEventListener('keydown', e => {
+        if(!lb.classList.contains('open')) return;
+        if(e.key==='Escape') close();
+        if(e.key==='ArrowLeft') show(i-1);
+        if(e.key==='ArrowRight') show(i+1);
+      });
+
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('[data-gallery]');
+        if(!btn) return;
+        const list = btn.getAttribute('data-gallery');
+        try { open(JSON.parse(list)); } catch { open(list.split('|')); }
+      });
+    })();
   </script>
 </body>
 </html>
