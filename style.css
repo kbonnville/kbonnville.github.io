@@ -194,3 +194,15 @@ footer { padding: 2rem 1rem; text-align: center; color: var(--muted); }
   h1 { font-size: 20pt; } h2 { font-size: 14pt; } h3 { font-size: 11.5pt; }
   .meta { color: #333; }
 }
+
+/* small, clickable logos for partner/parent projects */
+.logo-badges{
+  display:flex; gap:.5rem; align-items:center; margin:.25rem 0 .5rem;
+}
+.logo-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:30px; width:auto; padding:2px 4px; border-radius:8px;
+  background:#fff; border:1px solid #e8efed; box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.logo-badge img{height:26px; width:auto; display:block;}
+.logo-badge:hover{filter:brightness(1.03)}
