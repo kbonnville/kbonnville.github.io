@@ -4,14 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Research — Kelly Bonnville-Sexton</title>
-  <meta name="description" content="Research in SAR hydrology, sea-ice dynamics, field and lab projects by Kelly Bonnville-Sexton." />
+  <meta name="description" content="Research in SAR hydrology, sea-ice dynamics, geospatial data science, and marine biology by Kelly Bonnville-Sexton." />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Figure styling (safe to keep here even if already in style.css) */
-    .proj-figure { margin: 0 0 .6rem 0; border-radius: 14px; overflow: hidden;
-      border: 1px solid #e8efed; box-shadow: var(--shadow); }
-    .proj-figure img { display: block; width: 100%; height: 220px; object-fit: cover; }
-    .figcap { font-size: .9rem; color: var(--muted); margin-top: .35rem; }
+    /* ---- Square media cards (image left on desktop, stacks on mobile) ---- */
+    .card.media { display:grid; grid-template-columns: 280px 1fr; gap:1rem; align-items:start; }
+    .card.media .proj-figure { margin:0; aspect-ratio: 1 / 1; border-radius:12px; overflow:hidden; border:1px solid #e8efed; box-shadow: var(--shadow); }
+    .card.media .proj-figure img { width:100%; height:100%; object-fit: cover; display:block; }
+    @media (max-width: 860px) { .card.media { grid-template-columns: 1fr; } }
+
+    /* ---- Partner/project logo badges ---- */
+    .logo-badges{ display:flex; gap:.5rem; align-items:center; margin:.25rem 0 .5rem; }
+    .logo-badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      height:30px; padding:2px 4px; border-radius:8px;
+      background:#fff; border:1px solid #e8efed; box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+    .logo-badge img{ height:26px; width:auto; display:block; }
+    .logo-badge:hover{ filter:brightness(1.03) }
+
+    /* ---- Lightbox (click-to-expand gallery) ---- */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: none; align-items: center; justify-content: center; z-index: 9999; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 12px; background:#000; }
+    .lb-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.9); border: 0; padding: .6rem .8rem; border-radius: 999px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow); }
+    .lb-prev { left: 1rem; } .lb-next { right: 1rem; }
+    .lb-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,.95); border: 0; padding: .45rem .65rem; border-radius: 999px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow); }
+    .lb-counter { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); color: #fff; background: rgba(0,0,0,.35); padding: .25rem .6rem; border-radius: 8px; font-size: .9rem; }
   </style>
 </head>
 <body>
@@ -31,11 +50,10 @@
   </header>
 
   <main>
-    <!-- Quick pointer back to role summaries -->
+    <!-- pointer to Experience -->
     <section class="panel container">
       <p class="muted" style="margin:0 0 .5rem 0;">
-        Looking for concise role summaries? 
-        <a class="btn secondary" href="experience.html">See Experience</a>
+        Want role summaries? <a class="btn secondary" href="experience.html">See Experience</a>
       </p>
     </section>
 
@@ -43,96 +61,139 @@
     <section class="panel container" id="wetland-hydrology">
       <h2>Wetland Hydrology & SAR</h2>
 
-      <!-- High-Res SAR Surface-Water Mapping -->
-      <article class="card" id="sar-water">
-        <figure class="proj-figure">
-          <a href="images/research/sar-water-example.jpg" target="_blank" rel="noopener">
-            <img src="images/research/sar-water-example.jpg" alt="Example SAR-derived surface-water map with lake outlines">
-          </a>
-          <figcaption class="figcap">SAR-derived surface-water classification validated with Planet imagery.</figcaption>
+      <article class="card media" id="sar-water">
+        <figure class="proj-figure" data-gallery='["images/research/sar-overview.jpg","images/research/sar-water-example.jpg","images/research/incidence-angle.jpg"]'>
+          <img src="images/research/sar-overview.jpg" alt="Overview of SAR surface-water mapping">
         </figure>
-
-        <h3>High-Res SAR Surface-Water Mapping</h3>
-        <div class="meta">Alaska (Yukon Flats & Petersville) · Everglades · Pantanal</div>
-        <p>
-          Reproducible Python workflows using Capella & ICEYE X-band SAR to map surface-water extent; validation with
-          Planet imagery; per-lake areas and centroid offsets to quantify geolocation accuracy.
-        </p>
-        <div><span class="pill">Capella</span><span class="pill">ICEYE</span><span class="pill">Planet</span><span class="pill">Python</span><span class="pill">IoU · F1</span></div>
-        <p style="margin-top:.5rem;">
-          <a href="files/AGU_Oral_Slides_2024.pdf" target="_blank" rel="noopener">Slides</a>
-          · <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener">Code</a>
-        </p>
+        <div>
+          <h3>High-Resolution Surface-Water Mapping from X-band SAR</h3>
+          <div class="meta">Alaska (Yukon Flats & Petersville) · Everglades · Pantanal</div>
+          <p>Reproducible workflows using Capella & ICEYE SAR to map surface-water extent; validation with Planet imagery; per-lake areas and centroid offsets to quantify geolocation accuracy.</p>
+          <div><span class="pill">Capella</span><span class="pill">ICEYE</span><span class="pill">Planet</span><span class="pill">Python</span><span class="pill">IoU · F1</span></div>
+          <p style="margin-top:.5rem;">
+            <a class="btn secondary" href="files/AGU_Oral_Slides_2024.pdf" target="_blank" rel="noopener">Slides</a>
+            <button class="btn" data-gallery='["images/research/sar-overview.jpg","images/research/sar-water-example.jpg","images/research/incidence-angle.jpg"]'>View gallery</button>
+          </p>
+        </div>
       </article>
 
-      <!-- Incidence Angle & Geolocation -->
-      <article class="card" id="incidence-geolocation">
-        <figure class="proj-figure">
-          <a href="images/research/incidence-angle.jpg" target="_blank" rel="noopener">
-            <img src="images/research/incidence-angle.jpg" alt="Visualization of local incidence angle effects on backscatter">
-          </a>
-          <figcaption class="figcap">Local incidence-angle effects on backscatter and classification stability.</figcaption>
+      <article class="card media" id="incidence-geolocation">
+        <figure class="proj-figure" data-gallery='["images/research/incidence-angle.jpg","images/research/sar-water-example.jpg"]'>
+          <img src="images/research/incidence-angle.jpg" alt="Local incidence angle effects">
         </figure>
-
-        <h3>Incidence-Angle Effects & Geolocation Offsets</h3>
-        <div class="meta">Method development</div>
-        <p>
-          Assessed how local incidence angle influences backscatter and classification; compared SAR-derived lake centroids with
-          Planet and PLD shapes to characterize offsets and bias.
-        </p>
-        <div><span class="pill">Incidence angle</span><span class="pill">Geolocation</span><span class="pill">Evaluation</span></div>
-        <p style="margin-top:.5rem;">
-          <a href="files/Seminar_Slides_2025.pdf" target="_blank" rel="noopener">Seminar slides</a>
-        </p>
+        <div>
+          <h3>Incidence-Angle Effects & Geolocation Offsets</h3>
+          <div class="meta">Method development</div>
+          <p>Quantified how local incidence angle influences backscatter and classification; compared SAR-derived lake centroids with optical outlines to characterize offsets and bias.</p>
+          <div><span class="pill">Incidence angle</span><span class="pill">Geolocation</span><span class="pill">Evaluation</span></div>
+          <p style="margin-top:.5rem;">
+            <a class="btn secondary" href="files/Seminar_Slides_2025.pdf" target="_blank" rel="noopener">Seminar slides</a>
+            <button class="btn" data-gallery='["images/research/incidence-angle.jpg","images/research/sar-water-example.jpg"]'>View gallery</button>
+          </p>
+        </div>
       </article>
     </section>
 
-    <!-- ===== Sea-Ice Breakup Sequencing (Kivalina) ===== -->
+    <!-- ===== Sea-Ice Dynamics ===== -->
     <section class="panel container" id="kivalina-sequence">
       <h2>Sea-Ice Dynamics</h2>
 
-      <article class="card">
-        <figure class="proj-figure">
-          <a href="images/research/kivalina-ice-sequence.jpg" target="_blank" rel="noopener">
-            <img src="images/research/kivalina-ice-sequence.jpg" alt="Kivalina Lagoon and river mouths during breakup season">
-          </a>
-          <figcaption class="figcap">Kivalina Lagoon, Kivalina & Wulik Rivers, and adjacent ocean across breakup seasons.</figcaption>
+      <article class="card media">
+        <figure class="proj-figure" data-gallery='["images/research/kivalina-ice-sequence.jpg","images/research/kivalina-zoom.jpg","images/research/kivalina-ocean.jpg"]'>
+          <img src="images/research/kivalina-ice-sequence.jpg" alt="Kivalina Lagoon & rivers during breakup">
         </figure>
-
-        <h3>Sequence of Sea-Ice Breakup — Kivalina Lagoon & Inflow Rivers</h3>
-        <div class="meta">Multi-season optical time-series classification</div>
-        <p>
-          Classified breakup timing for Kivalina Lagoon, the Kivalina River, the Wulik River, and the adjacent ocean
-          to test whether the <em>sequence</em> of opening influences system timing. Produced per-segment timelines and
-          cross-correlations to compare pathways.
-        </p>
-        <div><span class="pill">Ice dynamics</span><span class="pill">Time series</span><span class="pill">Optical</span></div>
-        <p style="margin-top:.5rem;">
-          <a href="files/Kivalina_Breakup_Methods.pdf" target="_blank" rel="noopener">Methods</a>
-          · <a href="files/Kivalina_Figures.pdf" target="_blank" rel="noopener">Figures</a>
-        </p>
+        <div>
+          <h3>Sequence of Breakup in a Lagoon–River–Ocean System</h3>
+          <div class="meta">Multi-season optical time-series classification</div>
+          <p>Estimated breakup timing for a lagoon, two inflow rivers, and adjacent ocean to test whether opening <em>sequence</em> influences system timing; produced per-segment timelines and cross-correlations.</p>
+          <div><span class="pill">Ice dynamics</span><span class="pill">Time series</span><span class="pill">Optical</span></div>
+          <p style="margin-top:.5rem;">
+            <a class="btn secondary" href="files/Kivalina_Breakup_Methods.pdf" target="_blank" rel="noopener">Methods</a>
+            <button class="btn" data-gallery='["images/research/kivalina-ice-sequence.jpg","images/research/kivalina-zoom.jpg","images/research/kivalina-ocean.jpg"]'>View gallery</button>
+          </p>
+        </div>
       </article>
     </section>
 
-    <!-- ===== Alaska Fieldwork (separate from vessel & labs) ===== -->
-    <section class="panel container" id="alaska-field">
-      <h2>Alaska Fieldwork</h2>
+    <!-- ===== Geospatial Data Science ===== -->
+    <section class="panel container" id="geo-data-science">
+      <h2>Geospatial Data Science</h2>
 
-      <article class="card" id="petersville">
-        <figure class="proj-figure">
-          <a href="images/fieldwork/ak_gps.jpg" target="_blank" rel="noopener">
-            <img src="images/fieldwork/ak_gps.jpg" alt="Collecting GPS and ground reference data in Alaska wetlands">
-          </a>
-          <figcaption class="figcap">Collecting GPS/UAV/PT data to validate SAR/optical analyses.</figcaption>
+      <article class="card media" id="r-modeling">
+        <figure class="proj-figure" data-gallery='["images/labs/r-data.jpg"]'>
+          <img src="images/labs/r-data.jpg" alt="R-based geographic data analysis">
         </figure>
+        <div>
+          <h3>Multivariate & Spatial Modeling in R</h3>
+          <div class="meta">Statistical learning · Scientific visualization</div>
+          <p>Built end-to-end R workflows: GLMs/GAMs, CART, PCA/FA, discriminant & MANOVA, MDS, and clustering (hierarchical, k-means, PAM). Produced maps & figures with <strong>ggplot2</strong>; worked with <strong>sf</strong>, <strong>terra</strong>/<strong>raster</strong>/<strong>stars</strong>, and large rasters/netCDF (<strong>ncdf4</strong>).</p>
+          <div><span class="pill">R</span><span class="pill">ggplot2</span><span class="pill">sf</span><span class="pill">terra · raster · stars</span><span class="pill">GLM · GAM · CART</span><span class="pill">PCA · clustering</span><span class="pill">netCDF</span></div>
+          <p style="margin-top:.5rem;">
+            <button class="btn" data-gallery='["images/labs/r-data.jpg"]'>View gallery</button>
+          </p>
+        </div>
+      </article>
 
-        <h3>Ground Reference & Lake Surveys</h3>
-        <div class="meta">Petersville & Yukon Flats (NASA CSDA supported); Willamette River UAV; NASA SWOT Cal/Val</div>
-        <p>
-          Performed UAV, water-surface-elevation, and pressure-transducer surveys across multiple lakes and rivers
-          to validate satellite analyses; participated in a NASA SWOT calibration/validation campaign on the Willamette River.
-        </p>
-        <div><span class="pill">Field methods</span><span class="pill">UAV</span><span class="pill">Hydrology</span></div>
+      <article class="card media" id="climate-variability">
+        <figure class="proj-figure" data-gallery='["images/research/climate-attrib.jpg"]'>
+          <img src="images/research/climate-attrib.jpg" alt="Climate signal detection & extremes analysis">
+        </figure>
+        <div>
+          <h3>Detecting Climate Signals & Extremes</h3>
+          <div class="meta">Attribution frameworks · Counterfactual analysis</div>
+          <p>Applied detection–attribution concepts to hydro-climate time series and extremes; used probabilistic and counterfactual approaches with gridded datasets to separate natural variability from forced change.</p>
+          <div><span class="pill">Attribution</span><span class="pill">Extremes</span><span class="pill">Time series</span><span class="pill">R · netCDF</span></div>
+          <p style="margin-top:.5rem;">
+            <button class="btn" data-gallery='["images/research/climate-attrib.jpg"]'>View gallery</button>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===== Marine Ecology & Biodiversity ===== -->
+    <section class="panel container" id="marine-ecology">
+      <h2>Marine Ecology & Biodiversity</h2>
+
+      <!-- Intertidal card with DIMES logo badge -->
+      <article class="card media" id="intertidal">
+        <figure class="proj-figure" data-gallery='["images/labs/intertidal1.jpg","images/labs/intertidal2.jpg"]'>
+          <img src="images/labs/intertidal1.jpg" alt="Rocky intertidal survey and imagery">
+        </figure>
+        <div>
+          <h3>Intertidal Community Monitoring</h3>
+          <div class="meta">Rocky shore biodiversity · Quantitative sampling</div>
+
+          <div class="logo-badges">
+            <a class="logo-badge" href="https://sites.google.com/stanford.edu/dimes-rcn-ube/home" target="_blank" rel="noopener" aria-label="DIMES — Diversifying and Integrating Marine Education at Stations">
+              <img src="images/logos/DIMES_logo.png" alt="DIMES logo">
+            </a>
+          </div>
+
+          <p>
+            Designed and executed quantitative sampling in rocky intertidal; captured photo-quadrats; managed tidy data and metadata; analyzed biodiversity and community structure; communicated outcomes via poster/short video.
+            Work contributed to <strong>DIMES — Diversifying and Integrating Marine Education at Stations</strong>, an NSF RCN-UBE initiative building a unified, station-based curriculum and photographic surveys to document marine biodiversity change.
+          </p>
+          <div><span class="pill">Field sampling</span><span class="pill">ImageJ</span><span class="pill">R</span><span class="pill">Science communication</span></div>
+          <p style="margin-top:.5rem;">
+            <a class="btn secondary" href="https://sites.google.com/stanford.edu/dimes-rcn-ube/project-description" target="_blank" rel="noopener">DIMES project</a>
+            <button class="btn" data-gallery='["images/labs/intertidal1.jpg","images/labs/intertidal2.jpg"]'>View gallery</button>
+          </p>
+        </div>
+      </article>
+
+      <article class="card media" id="vertebrates">
+        <figure class="proj-figure" data-gallery='["images/labs/seabirds.jpg","images/labs/pinnipeds.jpg"]'>
+          <img src="images/labs/seabirds.jpg" alt="Seabird and pinniped monitoring">
+        </figure>
+        <div>
+          <h3>Seabird & Pinniped Monitoring</h3>
+          <div class="meta">Long-term observations · Data management</div>
+          <p>Recorded and analyzed field observations of marine birds and mammals; contributed to long-term monitoring datasets and species summaries grounded in field data.</p>
+          <div><span class="pill">Observations</span><span class="pill">Data management</span><span class="pill">Ecology</span></div>
+          <p style="margin-top:.5rem;">
+            <button class="btn" data-gallery='["images/labs/seabirds.jpg","images/labs/pinnipeds.jpg"]'>View gallery</button>
+          </p>
+        </div>
       </article>
     </section>
 
@@ -140,60 +201,52 @@
     <section class="panel container" id="lab-projects">
       <h2>Lab-Based Projects</h2>
 
-      <article class="card" id="maslakova">
-        <figure class="proj-figure">
-          <a href="images/labs/maslakova-dna.jpg" target="_blank" rel="noopener">
-            <img src="images/labs/maslakova-dna.jpg" alt="DNA extraction and gel electrophoresis bench setup">
-          </a>
-          <figcaption class="figcap">DNA extraction, PCR, and sequencing analysis (Geneious Prime).</figcaption>
+      <article class="card media" id="maslakova">
+        <figure class="proj-figure" data-gallery='["images/labs/maslakova-dna.jpg"]'>
+          <img src="images/labs/maslakova-dna.jpg" alt="DNA extraction & gel bench">
         </figure>
-
-        <h3>Maslakova Lab — Molecular Work</h3>
-        <div class="meta">DNA extraction · Gel electrophoresis · PCR · Geneious Prime</div>
-        <p>Performed DNA extractions, PCR, and gel electrophoresis; analyzed sequence data in Geneious Prime.</p>
-        <div><span class="pill">Molecular</span><span class="pill">PCR</span><span class="pill">Geneious</span></div>
+        <div>
+          <h3>Molecular Methods for Marine Systems</h3>
+          <div class="meta">DNA extraction · PCR · Gel electrophoresis · Sequencing</div>
+          <p>Executed full molecular workflow and analyzed sequences in Geneious Prime; documented protocols with reproducible lab notes.</p>
+          <div><span class="pill">Molecular</span><span class="pill">PCR</span><span class="pill">Geneious</span></div>
+        </div>
       </article>
 
-      <article class="card" id="vondassow">
-        <figure class="proj-figure">
-          <a href="images/labs/vondassow-micro.jpg" target="_blank" rel="noopener">
-            <img src="images/labs/vondassow-micro.jpg" alt="High-speed video microscopy of larvae">
-          </a>
-          <figcaption class="figcap">High-speed video microscopy of larval motion; plankton ID/sorting.</figcaption>
+      <article class="card media" id="vondassow">
+        <figure class="proj-figure" data-gallery='["images/labs/vondassow-micro.jpg"]'>
+          <img src="images/labs/vondassow-micro.jpg" alt="High-speed video microscopy of larvae">
         </figure>
-
-        <h3>Von Dassow Lab — Larval Motion & Plankton</h3>
-        <div class="meta">High-speed video microscopy · Plankton ID/Sorting</div>
-        <p>Captured larval motion via high-speed microscopy; collected/sorted/identified planktonic larvae.</p>
-        <div><span class="pill">Microscopy</span><span class="pill">Plankton</span></div>
+        <div>
+          <h3>Larval Motion & Plankton Analysis</h3>
+          <div class="meta">High-speed video microscopy · Sorting & ID</div>
+          <p>Captured larval motion and identified plankton; linked imaging to quantitative observations.</p>
+          <div><span class="pill">Microscopy</span><span class="pill">Plankton</span></div>
+        </div>
       </article>
 
-      <article class="card" id="galloway">
-        <figure class="proj-figure">
-          <a href="images/labs/abalone-sdm.jpg" target="_blank" rel="noopener">
-            <img src="images/labs/abalone-sdm.jpg" alt="Species distribution model maps for Red Abalone">
-          </a>
-          <figcaption class="figcap">Species distribution model (SDM) for Red Abalone using ArcGIS Pro & MaxEnt.</figcaption>
+      <article class="card media" id="galloway">
+        <figure class="proj-figure" data-gallery='["images/labs/abalone-sdm.jpg"]'>
+          <img src="images/labs/abalone-sdm.jpg" alt="SDM maps for Red Abalone">
         </figure>
-
-        <h3>Galloway Lab — Species Distribution Modeling</h3>
-        <div class="meta">Red Abalone · ArcGIS Pro · MaxEnt</div>
-        <p>Compiled biological/location data and led the creation of a Red Abalone SDM along the Oregon coast.</p>
-        <div><span class="pill">SDM</span><span class="pill">ArcGIS Pro</span><span class="pill">MaxEnt</span></div>
+        <div>
+          <h3>Species Distribution Modeling</h3>
+          <div class="meta">Red abalone · ArcGIS Pro · MaxEnt</div>
+          <p>Compiled biological/location data and produced coastal SDMs; compared predictors and performance.</p>
+          <div><span class="pill">SDM</span><span class="pill">ArcGIS Pro</span><span class="pill">MaxEnt</span></div>
+        </div>
       </article>
 
-      <article class="card" id="young">
-        <figure class="proj-figure">
-          <a href="images/labs/pyrosome.jpg" target="_blank" rel="noopener">
-            <img src="images/labs/pyrosome.jpg" alt="Pyrosome dissection and ROV video annotation">
-          </a>
-          <figcaption class="figcap">Pyrosome dissections; methane seep size quantification from ROV video.</figcaption>
+      <article class="card media" id="young">
+        <figure class="proj-figure" data-gallery='["images/labs/pyrosome.jpg"]'>
+          <img src="images/labs/pyrosome.jpg" alt="Pyrosome dissection / ROV video analysis">
         </figure>
-
-        <h3>Young Lab — Deep-Sea Samples & Video Analysis</h3>
-        <div class="meta">Pyrosome dissections · ROV video analysis</div>
-        <p>Dissected pyrosomes and identified deep-sea plankton; analyzed ROV video to quantify methane seep size.</p>
-        <div><span class="pill">Deep-sea</span><span class="pill">ROV</span><span class="pill">Quantification</span></div>
+        <div>
+          <h3>Deep-Sea Samples & Video Quantification</h3>
+          <div class="meta">Pyrosomes · ROV video</div>
+          <p>Dissected deep-sea samples and quantified seep features from ROV video; integrated results with ecological context.</p>
+          <div><span class="pill">Deep-sea</span><span class="pill">ROV</span><span class="pill">Quantification</span></div>
+        </div>
       </article>
     </section>
   </main>
@@ -206,6 +259,50 @@
       const target=normalize(a.getAttribute('href')||'');
       if(target===current){ a.classList.add('active'); a.setAttribute('aria-current','page'); }
     });
+  </script>
+
+  <!-- Lightbox script -->
+  <script>
+    (function(){
+      const lb = document.createElement('div');
+      lb.className = 'lightbox';
+      lb.innerHTML = `
+        <button class="lb-close" aria-label="Close">✕</button>
+        <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
+        <img alt="">
+        <button class="lb-btn lb-next" aria-label="Next">›</button>
+        <div class="lb-counter" aria-live="polite"></div>
+      `;
+      document.body.appendChild(lb);
+      const imgEl = lb.querySelector('img');
+      const prevBtn = lb.querySelector('.lb-prev');
+      const nextBtn = lb.querySelector('.lb-next');
+      const closeBtn = lb.querySelector('.lb-close');
+      const counter = lb.querySelector('.lb-counter');
+      let photos = []; let i = 0;
+
+      function show(k){ i = (k+photos.length)%photos.length; imgEl.src = photos[i]; counter.textContent = (i+1)+' / '+photos.length; }
+      function open(arr){ photos = arr; if(!photos.length) return; show(0); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+      function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+
+      prevBtn.onclick = ()=>show(i-1);
+      nextBtn.onclick = ()=>show(i+1);
+      closeBtn.onclick = close;
+      lb.addEventListener('click', e => { if(e.target === lb) close(); });
+      document.addEventListener('keydown', e => {
+        if(!lb.classList.contains('open')) return;
+        if(e.key==='Escape') close();
+        if(e.key==='ArrowLeft') show(i-1);
+        if(e.key==='ArrowRight') show(i+1);
+      });
+
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('[data-gallery]');
+        if(!btn) return;
+        const list = btn.getAttribute('data-gallery');
+        try { open(JSON.parse(list)); } catch { open(list.split('|')); }
+      });
+    })();
   </script>
 </body>
 </html>
